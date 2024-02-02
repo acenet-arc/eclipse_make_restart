@@ -1,4 +1,10 @@
 #!/usr/bin/env python3
+# This tool "eclipse_make_restart.py" is licensed under the MIT License.
+# Copyright (c) 2024  Oliver Stueker
+#
+# Please see the file LICENSE.txt for the full text of the license.
+# The license does not extend to any other products or tools, 
+# unless explicitly stated by their respective authors or copyright holders.
 import argparse
 from glob import glob
 import logging
