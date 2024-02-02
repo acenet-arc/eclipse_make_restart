@@ -25,6 +25,13 @@ def determine_restart_id(basename):
     xfiles = glob('{basename:s}.X[0-9][0-9][0-9][0-9]'.format(basename=basename))
     xfiles.sort()
 
+    if len(xfiles) == 0:
+        msg = 'FATAL ERROR:\n'
+        msg += 'Did not find any restart file: "{basename:s}.X0000"\n'.format(basename=basename)
+        msg += 'exiting.'
+        logger.error(msg)
+        sys.exit(1)
+
     # get last four digits
     x_filename = xfiles[-1]
     id = re.search(r'\.X([0-9]{4})$', x_filename).group(1)
