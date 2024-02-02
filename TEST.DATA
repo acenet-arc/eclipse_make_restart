@@ -1,0 +1,25 @@
+-- This is a Test-file for the eclipse_make_restart.py script
+
+-- Generated [
+-- Format      : ECLIPSE keywords (ASCII)
+-- Generated ]
+
+RUNSPEC
+
+-- Actual simulation data stripped out
+
+SOLUTION
+
+INCLUDE                                -- Generated
+ 'TEST.INC' /
+
+SUMMARY
+
+INCLUDE                                -- Generated
+'TEST.INC' /
+
+SCHEDULE
+
+INCLUDE                                -- Generated
+'TEST.INC' /
+
