@@ -3,7 +3,7 @@
 # Copyright (c) 2024  Oliver Stueker
 #
 # Please see the file LICENSE.txt for the full text of the license.
-# The license does not extend to any other products or tools, 
+# The license does not extend to any other products or tools,
 # unless explicitly stated by their respective authors or copyright holders.
 import argparse
 from glob import glob
@@ -16,9 +16,10 @@ import sys
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(sys.argv[0].rstrip('.py'))
 
+
 def determine_restart_id(basename):
     "Looks for existing $BASENAME.Xiiii and $BASENAME.Siiii files to determine number for restart."
-    
+
     # 1) find restart-files and determine largest number of *.X[0-9]{4}
     # find all files that are named $BASENAME.Xiiii and sort:
     xfiles = glob('{basename:s}.X[0-9][0-9][0-9][0-9]'.format(basename=basename))
@@ -26,13 +27,13 @@ def determine_restart_id(basename):
 
     # get last four digits
     x_filename = xfiles[-1]
-    id = re.search(r'\.X([0-9]{4})$',x_filename).group(1)
+    id = re.search(r'\.X([0-9]{4})$', x_filename).group(1)
     logger.debug('Largest Xiiii file is: {:s}'.format(x_filename))
 
     # check if corresponding Siii file exists
     s_filename = '{basename:s}.S{id:s}'.format(basename=basename, id=id)
     if not os.path.exists(s_filename):
-        msg  = 'FATAL ERROR:\n'
+        msg = 'FATAL ERROR:\n'
         msg += 'Found {x_fn:s},\n'.format(x_fn=x_filename)
         msg += 'but   {s_fn:s} does not exist!\n'.format(s_fn=s_filename)
         msg += 'exiting.'
@@ -43,6 +44,7 @@ def determine_restart_id(basename):
     logger.debug('Next restart number is: {:s}'.format(id))
 
     return id
+
 
 def update_data_file(basename, id, **kwargs):
     "Update DATA file for the next restart."
@@ -101,8 +103,8 @@ def update_data_file(basename, id, **kwargs):
             # 3) If RESTART already there: just update number
             if (found_restart and not restart_updated):
                 logger.debug("Updating existing RESTART clause.")
-                new_data.append(line)       # append RESTART line
-                line = data_file.readline() # read next line
+                new_data.append(line)        # append RESTART line
+                line = data_file.readline()  # read next line
                 line = ' {basename:s} {id:s} /\n'.format(basename=basename, id=id)
                 restart_updated = True
                 logger.info('Updated RESTART (report number {:})'.format(id))
