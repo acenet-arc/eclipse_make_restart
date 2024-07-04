@@ -164,9 +164,11 @@ if __name__ == "__main__":
 
     # remove .DATA suffix from basename, if present
     if args.basename[0].endswith('.DATA'):
-        basename = args.basename[0].rstrip(".DATA")
+        basename = args.basename[0][:args.basename[0].rfind('.DATA')]
     else:
         basename = args.basename[0]
+
+    logger.debug("Basename is: {basename:s}".format(basename=basename))
 
     data_filename = '{basename:s}.DATA'.format(basename=basename)
 
